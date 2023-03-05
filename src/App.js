@@ -1,10 +1,10 @@
 import "./App.css";
-import Categorias from "./pages/Categorias";
+import Diferencia from "./pages/Diferencia";
 
 function App() {
   return (
     <>
-      <Categorias />
+      <Diferencia />
     </>
   );
 }
