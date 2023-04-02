@@ -4,6 +4,7 @@ import Diferencia from "./pages/Diferencia";
 function App() {
   return (
     <>
+    
       <Diferencia />
     </>
   );
