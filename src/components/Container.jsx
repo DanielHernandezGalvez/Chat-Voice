@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Modal,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
 
-function Container() {
+function Capital() {
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [incomeDescription, setIncomeDescription] = useState('');
   const [expenseDescription, setExpenseDescription] = useState('');
   const [transactions, setTransactions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const total = transactions.reduce((acc, cur) => acc + cur.amount, 0);
@@ -14,6 +24,10 @@ function Container() {
   }, [transactions]);
 
   const handleAddIncome = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleAddIncomeConfirm = () => {
     if (incomeDescription && income !== 0) {
       setTransactions([
         ...transactions,
@@ -25,10 +39,15 @@ function Container() {
       ]);
       setIncome(0);
       setIncomeDescription('');
+      setIsModalOpen(false);
     }
   };
 
   const handleAddExpense = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleAddExpenseConfirm = () => {
     if (expenseDescription && expense !== 0) {
       setTransactions([
         ...transactions,
@@ -40,58 +59,120 @@ function Container() {
       ]);
       setExpense(0);
       setExpenseDescription('');
+      setIsModalOpen(false);
     }
   };
 
   return (
-    <div>
-      <div>
-        <h2>Ingresos</h2>
-        <input
-          type="number"
-          placeholder="Monto"
-          value={income}
-          onChange={(e) => setIncome(Number(e.target.value))}
-        />
-        <input
-          type="text"
-          placeholder="Descripción"
-          value={incomeDescription}
-          onChange={(e) => setIncomeDescription(e.target.value)}
-        />
-        <button onClick={handleAddIncome}>Agregar ingreso</button>
-      </div>
-      <div>
-        <h2>Gastos</h2>
-        <input
-          type="number"
-          placeholder="Monto"
-          value={expense}
-          onChange={(e) => setExpense(Number(e.target.value))}
-        />
-        <input
-          type="text"
-          placeholder="Descripción"
-          value={expenseDescription}
-          onChange={(e) => setExpenseDescription(e.target.value)}
-        />
-        <button onClick={handleAddExpense}>Agregar gasto</button>
-      </div>
-      <div>
-        <h2>Total: {income - expense}</h2>
-      </div>
-      <div>
-        <h2>Historial</h2>
+    <SafeAreaView style={styles.generalPadding}>
+      {/* ingresos */}
+      <View>
+        <Text style={styles.text}>Total: {income - expense}</Text>
+      </View>
+      <View style={styles.fixToText}>
+        <View>
+          <Text style={styles.text}>Ingresos ${income}</Text>
+          <Button
+            title="Agregar ingreso"
+            onPress={handleAddIncome}
+            style={{
+              backgroundColor: 'blue',
+              color: 'white',
+            }}
+          />
+        </View>
+
+        <View>
+          <Text style={styles.text}>Gastos ${expense}</Text>
+          <Button title="Agregar gasto" onPress={handleAddExpense} />
+        </View>
+      </View>
+
+      <Modal visible={isModalOpen} animationType="slide">
+        <View>
+          <Text>Agregar ingreso</Text>
+          <TextInput
+            keyboardType="numeric"
+            // placeholder="Monto"
+            value={income.toString()}
+            onChangeText={value => setIncome(Number(value))}
+          />
+          <TextInput
+            placeholder="Descripción"
+            value={incomeDescription}
+            onChangeText={value => setIncomeDescription(value)}
+          />
+          {/* <View style={styles.fixToText}> */}
+          <Button title="Agregar" onPress={handleAddIncomeConfirm} />
+          <Button title="Cancelar" onPress={() => setIsModalOpen(false)} />
+          {/* </View> */}
+        </View>
+      </Modal>
+      {/* ingresos */}
+
+      {/* gastos */}
+
+      <Modal visible={isModalOpen} animationType="slide">
+        <View>
+          <TextInput
+            keyboardType="numeric"
+            // placeholder="Monto"
+            value={expense.toString()}
+            onChangeText={value => setExpense(Number(value))}
+          />
+          <TextInput
+            placeholder="Descripción"
+            value={expenseDescription}
+            onChangeText={value => setExpenseDescription(value)}
+          />
+          {/* <View style={styles.fixToText}> */}
+          <Button title="Agregar" onPress={handleAddExpenseConfirm} />
+          <Button title="Cancelar" onPress={() => setIsModalOpen(false)} />
+          {/* </View> */}
+        </View>
+      </Modal>
+
+      <View>
+        <Text>Historial</Text>
         {transactions.map((transaction, index) => (
-          <div key={index}>
-            <span>{transaction.type === 'income' ? '+' : '-'}</span>
-            <span>{transaction.amount}</span>
-            <span>{transaction.description}</span>
-          </div>
+          <View key={index}>
+            <Text>
+              {transaction.type === 'income' && '+'} {transaction.amount}
+            </Text>
+            <Text></Text>
+            <Text>{transaction.description}</Text>
+          </View>
         ))}
-      </div>
-    </div>
+      </View>
+    </SafeAreaView>
   );
 }
 
-export default Container;
+const styles = StyleSheet.create({
+  buttonIncome: {
+    margin: 10,
+    backgroundColor: 'blue',
+    color: 'white',
+    padding: 10,
+    borderRadius: 5,
+  },
+  text: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  generalPadding: {
+    padding: '5%',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+  },
+});
+
+export default Capital;
