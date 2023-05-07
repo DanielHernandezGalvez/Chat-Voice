@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   Button,
-  Modal,
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
