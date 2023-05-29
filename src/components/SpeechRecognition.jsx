@@ -112,6 +112,7 @@ function SpeechRecognition() {
             <label>Velocidad:</label>
             <input
               type="range"
+              className="form-range"
               min="0.5"
               max="2"
               step="0.1"
@@ -124,6 +125,7 @@ function SpeechRecognition() {
             <label>Tono:</label>
             <input
               type="range"
+              className="form-range"
               min="0"
               max="2"
               step="0.1"
@@ -136,6 +138,7 @@ function SpeechRecognition() {
             <label>Volumen:</label>
             <input
               type="range"
+              className="form-range"
               min="0"
               max="1"
               step="0.1"
