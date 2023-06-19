@@ -40,3 +40,19 @@ code {
 .color-gray {
   background-color: #f7f7f9;
 }
+
+.equis {
+  transition: 0.3s ease-out all;
+}
+
+.equis:hover {
+  transform: scale(1.2);
+}
+
+.copiar {
+  transition: 0.3s ease-out all;
+}
+
+.copiar:hover {
+  transform: scale(1.2);
+}

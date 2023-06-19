@@ -15,12 +15,18 @@ function App() {
 
   return (
     <>
-      <nav class="navbar navbar-dark bg-dark px-4 ">
-        <button className="btn btn-dark p-0" onClick={handleText}>
-          Texto a Voz
+      <nav class="navbar navbar-primary bg-primary px-4 ">
+        <button
+          className="btn btn-primary border-none p-0"
+          onClick={handleText}
+        >
+          Voz a texto{" "}
         </button>
-        <button className="btn btn-dark p-0" onClick={handleVoice}>
-          Voz a texto
+        <button
+          className="btn btn-primary border-none p-0"
+          onClick={handleVoice}
+        >
+          Texto a Voz
         </button>
       </nav>
 

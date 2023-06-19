@@ -149,7 +149,7 @@ function SpeechRecognition() {
           </div>
         </div>
         <div className="col-md-6 col-sm-12 text-end mx-auto my-auto">
-          <button className="btn btn-primary  ms-2 " onClick={speakText}>
+          <button className="btn btn-dark  ms-2 " onClick={speakText}>
             Leer
           </button>
         </div>

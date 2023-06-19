@@ -88,7 +88,7 @@ export default function VoiceRecognition() {
 
       <h1 className="mb-5">Voice Chat</h1>
       <div className="container text-center ">
-        <button className="btn btn-primary" onClick={ejecutarSpeechAPI}>
+        <button className="btn btn-dark" onClick={ejecutarSpeechAPI}>
           Iniciar reconocimiento de voz
         </button>
       </div>
