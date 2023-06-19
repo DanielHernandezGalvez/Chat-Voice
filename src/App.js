@@ -24,7 +24,7 @@ function App() {
         </button>
       </nav>
 
-      {change ? <VoiceRecognition /> : <SpeechRecognition />}
+      {change ? <SpeechRecognition /> : <VoiceRecognition />}
     </>
   );
 }
