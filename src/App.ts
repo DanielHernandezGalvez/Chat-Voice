@@ -9,7 +9,6 @@ const App: React.FC = () => {
     setChange(false);
   };
   
-
   const handleVoice = (): void => {
     setChange(true);
   };
