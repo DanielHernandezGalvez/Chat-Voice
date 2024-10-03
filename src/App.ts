@@ -37,7 +37,6 @@ const App: React.FC = () => {
 
 export default App;
 
-
 /*
 // import { useUser } from "./context/UserContext";
 import SpeechRecognition from "./components/SpeechRecognition";
